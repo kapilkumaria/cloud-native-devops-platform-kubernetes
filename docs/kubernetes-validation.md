@@ -14,15 +14,15 @@ Validate that the application stack can be deployed to Kubernetes using declarat
 
 ## Validation Commands
 
-```bash
+```
 kubectl apply -f apps/base/namespace.yaml
 kubectl apply -f apps/postgres/
 kubectl apply -f apps/backend/
 kubectl apply -f apps/frontend/
-
+```
 ## Verification
 
-```bash
+```
 kubectl get pods -n cloud-platform
 kubectl get svc -n cloud-platform
 kubectl get pvc -n cloud-platform
