@@ -1,0 +1,12 @@
+# Local files
+.env
+*.log
+
+# Kubernetes local outputs
+kubeconfig
+*.kubeconfig
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
