@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: kapilkumaria/cv-backend:latest
+          image: kappu1512/cloud-platform-backend:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 8000

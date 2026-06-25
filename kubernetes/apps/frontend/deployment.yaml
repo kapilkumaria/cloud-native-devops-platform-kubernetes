@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: kapilkumaria/cv-frontend:latest
+          image: kappu1512/cloud-platform-frontend:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
