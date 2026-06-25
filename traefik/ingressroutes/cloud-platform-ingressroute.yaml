@@ -1,0 +1,35 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: cloud-platform-ingressroute
+  namespace: cloud-platform
+spec:
+  entryPoints:
+    - web
+
+  routes:
+    - match: Host(`app.example.com`) && PathPrefix(`/api`)
+      kind: Rule
+      middlewares:
+        - name: backend-strip-prefix
+      services:
+        - name: backend
+          port: 8000
+
+    - match: Host(`app.example.com`) && PathPrefix(`/docs`)
+      kind: Rule
+      services:
+        - name: backend
+          port: 8000
+
+    - match: Host(`app.example.com`) && PathPrefix(`/redoc`)
+      kind: Rule
+      services:
+        - name: backend
+          port: 8000
+
+    - match: Host(`app.example.com`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: frontend
+          port: 80
