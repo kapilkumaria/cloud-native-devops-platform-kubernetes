@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: cloud-platform
+  namespace: argocd
+spec:
+  description: Cloud-Native DevOps Platform project
+
+  sourceRepos:
+    - https://github.com/kapilkumaria/cloud-native-devops-platform-kubernetes.git
+
+  destinations:
+    - namespace: cloud-platform
+      server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
