@@ -2,28 +2,89 @@
 
 ## Objective
 
-Validate application routing through Traefik.
+Validate Traefik Ingress Controller deployment and routing configuration.
 
-## Routes
+---
 
-| Path | Target |
-|---|---|
-| `/` | frontend service |
-| `/api` | backend service |
-| `/docs` | backend Swagger UI |
-| `/redoc` | backend Redoc UI |
+## Traefik Deployment
 
-## Validate
-
-```
-kubectl get ingressroute -n cloud-platform
-kubectl get middleware -n cloud-platform
+```bash
+kubectl get pods -n traefik
 ```
 
-## Browser Validation
+Expected Result
 
-```
-http://app.example.com/
-http://app.example.com/docs
+Traefik pod Running.
+
+---
+
+## Traefik Service
+
+```bash
+kubectl get svc -n traefik
 ```
 
+Expected Result
+
+LoadBalancer Service created.
+
+---
+
+## Middleware Validation
+
+```bash
+kubectl get middleware -A
+```
+
+Screenshot
+
+- docs/screenshots/traefik-middleware.png
+
+---
+
+## IngressRoute Validation
+
+```bash
+kubectl get ingressroute -A
+```
+
+Screenshot
+
+- docs/screenshots/traefik-ingressroute.png
+
+---
+
+## Load Balancer
+
+Traefik exposes:
+
+- HTTP (80)
+- HTTPS (443)
+
+using an AWS Elastic Load Balancer.
+
+---
+
+## Routing
+
+Traefik routes requests to:
+
+Frontend
+
+↓
+
+Backend API
+
+↓
+
+PostgreSQL
+
+---
+
+## Lessons Learned
+
+- Traefik CRDs
+- IngressRoute
+- Middleware
+- Strip Prefix
+- LoadBalancer Services
