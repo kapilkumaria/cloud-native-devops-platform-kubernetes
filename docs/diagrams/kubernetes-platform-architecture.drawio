@@ -1,0 +1,139 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Kubernetes Platform Architecture">
+    <mxGraphModel dx="1800" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1100">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="title" value="Cloud-Native DevOps Platform - Kubernetes Platform Architecture" style="text;html=1;strokeColor=none;fillColor=none;fontSize=32;fontStyle=1;fontColor=#0f172a;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="25" width="1200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="subtitle" value="GitOps + Ingress + Observability on Amazon EKS" style="text;html=1;strokeColor=none;fillColor=none;fontSize=20;fontStyle=2;fontColor=#2563eb;align=center;" vertex="1" parent="1">
+          <mxGeometry x="520" y="75" width="760" height="35" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="github" value="🐙  &lt;b&gt;GitHub Repository&lt;/b&gt;&lt;br&gt;cloud-native-devops-platform-kubernetes&lt;br&gt;&lt;br&gt;• Kubernetes manifests&lt;br&gt;• ArgoCD Application&lt;br&gt;• Traefik routing&lt;br&gt;• Monitoring / logging docs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#94a3b8;fontSize=15;shadow=1;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="50" y="130" width="320" height="180" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="argocd" value="🦑  &lt;b&gt;ArgoCD&lt;/b&gt;&lt;br&gt;GitOps Controller&lt;br&gt;&lt;br&gt;✅ Auto Sync&lt;br&gt;✅ Self Heal&lt;br&gt;✅ Prune&lt;br&gt;✅ Desired State Reconciliation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#f97316;fontSize=15;shadow=1;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="470" y="130" width="300" height="180" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="api" value="☸️  &lt;b&gt;Kubernetes API Server&lt;/b&gt;&lt;br&gt;Reconciles desired state into Amazon EKS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#2563eb;fontSize=16;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="880" y="150" width="330" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="users" value="👥  &lt;b&gt;Users / Browser&lt;/b&gt;&lt;br&gt;&lt;br&gt;• HTTP / HTTPS traffic&lt;br&gt;• Frontend access&lt;br&gt;• Backend docs access&lt;br&gt;• Dashboard access" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#94a3b8;fontSize=15;shadow=1;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="130" width="330" height="180" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="eks" value="☸️  &lt;b&gt;Amazon EKS Cluster&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 6;fillColor=#f8fafc;strokeColor=#2563eb;strokeWidth=2;fontSize=20;fontStyle=1;fontColor=#1d4ed8;align=left;verticalAlign=top;spacingLeft=25;spacingTop=20;" vertex="1" parent="1">
+          <mxGeometry x="70" y="360" width="1510" height="570" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="alb" value="🟣  &lt;b&gt;AWS Load Balancer&lt;/b&gt;&lt;br&gt;&lt;br&gt;TCP 80 / 443&lt;br&gt;External traffic entry point" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#faf5ff;strokeColor=#7c3aed;fontSize=15;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="100" y="520" width="210" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="traefikns" value="🟢  &lt;b&gt;Ingress Layer&lt;/b&gt;&lt;br&gt;Namespace: traefik" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;fontSize=16;fontStyle=1;fontColor=#166534;align=center;" vertex="1" parent="1">
+          <mxGeometry x="360" y="420" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="traefik" value="🚦  &lt;b&gt;Traefik&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ingress Controller&lt;br&gt;LoadBalancer Service&lt;br&gt;IngressRoutes&lt;br&gt;Middlewares" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;fontSize=15;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="350" y="510" width="280" height="210" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="appns" value="🔵  &lt;b&gt;Application Namespace&lt;/b&gt;&lt;br&gt;cloud-platform" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#2563eb;fontSize=16;fontStyle=1;fontColor=#1d4ed8;align=center;" vertex="1" parent="1">
+          <mxGeometry x="690" y="410" width="330" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="frontend" value="⚛️  &lt;b&gt;Frontend&lt;/b&gt;&lt;br&gt;React + Vite&lt;br&gt;Nginx&lt;br&gt;Port 3000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;fontSize=15;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="730" y="510" width="250" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="backend" value="⚡  &lt;b&gt;Backend&lt;/b&gt;&lt;br&gt;FastAPI + Uvicorn&lt;br&gt;Swagger: /docs&lt;br&gt;Port 8000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#f97316;fontSize=15;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="730" y="660" width="250" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="postgres" value="🐘  &lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;Database: app&lt;br&gt;Service: postgres&lt;br&gt;Port 5432" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#faf5ff;strokeColor=#7c3aed;fontSize=15;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="730" y="810" width="250" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="monitoring" value="🔥  &lt;b&gt;Monitoring Namespace&lt;/b&gt;&lt;br&gt;monitoring&lt;br&gt;&lt;br&gt;Prometheus&lt;br&gt;Grafana&lt;br&gt;Alertmanager&lt;br&gt;kube-state-metrics&lt;br&gt;node-exporter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#f97316;fontSize=15;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="430" width="300" height="250" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="logging" value="🟧  &lt;b&gt;Logging Namespace&lt;/b&gt;&lt;br&gt;logging&lt;br&gt;&lt;br&gt;Loki&lt;br&gt;Promtail&lt;br&gt;Log aggregation&lt;br&gt;DaemonSet log collection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#f59e0b;fontSize=15;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="720" width="300" height="210" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="access" value="🌐  &lt;b&gt;External Access&lt;/b&gt;&lt;br&gt;&lt;br&gt;app.example.com&lt;br&gt;Frontend&lt;br&gt;&lt;br&gt;app.example.com/docs&lt;br&gt;Backend Swagger&lt;br&gt;&lt;br&gt;Prometheus / Grafana / Alertmanager via port-forward" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f59e0b;fontSize=15;shadow=1;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="440" width="250" height="310" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="nodes" value="&lt;b&gt;EKS Worker Nodes&lt;/b&gt;&lt;br&gt;Pods scheduled across worker nodes" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=6 5;fillColor=#eff6ff;strokeColor=#60a5fa;fontSize=15;fontStyle=1;fontColor=#1d4ed8;align=center;" vertex="1" parent="1">
+          <mxGeometry x="430" y="965" width="760" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;━━ Request / Traffic Flow&lt;br&gt;┄┄ GitOps Sync&lt;br&gt;┄┄ Metrics Flow&lt;br&gt;┄┄ Logs Flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=14;shadow=1;align=left;spacingLeft=15;" vertex="1" parent="1">
+          <mxGeometry x="70" y="965" width="260" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="stack" value="&lt;b&gt;Technology Stack&lt;/b&gt;&lt;br&gt;☸️ Kubernetes | 🦑 ArgoCD | 🚦 Traefik | 🔥 Prometheus | 📊 Grafana | 🔔 Alertmanager | 🟧 Loki | 🦝 Promtail | 🟧 AWS EKS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=16;shadow=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="970" width="560" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" edge="1" parent="1" source="github" target="argocd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0f172a;strokeWidth=2;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" edge="1" parent="1" source="argocd" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7c3aed;strokeWidth=2;dashed=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" edge="1" parent="1" source="users" target="alb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0f172a;strokeWidth=2;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" edge="1" parent="1" source="alb" target="traefik" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0f172a;strokeWidth=2;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" value="Host: app.example.com /" edge="1" parent="1" source="traefik" target="frontend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0f172a;strokeWidth=2;endArrow=block;fontSize=12;fontStyle=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" value="Host: app.example.com /docs" edge="1" parent="1" source="traefik" target="backend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0f172a;strokeWidth=2;endArrow=block;fontSize=12;fontStyle=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e7" value="API Calls" edge="1" parent="1" source="frontend" target="backend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0284c7;strokeWidth=2;endArrow=block;fontSize=13;fontStyle=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e8" value="SQL" edge="1" parent="1" source="backend" target="postgres" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7c3aed;strokeWidth=2;endArrow=block;fontSize=13;fontStyle=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e9" value="Metrics" edge="1" parent="1" source="appns" target="monitoring" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2563eb;strokeWidth=2;dashed=1;endArrow=block;fontSize=13;fontStyle=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e10" value="Logs" edge="1" parent="1" source="appns" target="logging" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#f59e0b;strokeWidth=2;dashed=1;endArrow=block;fontSize=13;fontStyle=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e11" edge="1" parent="1" source="monitoring" target="logging" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#f59e0b;strokeWidth=2;dashed=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e12" edge="1" parent="1" source="traefik" target="access" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#f59e0b;strokeWidth=2;dashed=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
