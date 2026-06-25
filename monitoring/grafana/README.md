@@ -1,3 +1,3 @@
 # Grafana
 
-Grafana manifests and dashboards will be stored here.
+Grafana dashboards, datasource configuration, and validation screenshots will be documented here.

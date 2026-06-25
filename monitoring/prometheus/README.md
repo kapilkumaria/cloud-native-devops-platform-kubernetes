@@ -1,3 +1,3 @@
 # Prometheus
 
-Prometheus manifests will be stored here.
+Prometheus manifests, Helm values, and scrape configuration will be documented here.

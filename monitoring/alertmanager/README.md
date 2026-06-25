@@ -1,3 +1,3 @@
 # Alertmanager
 
-Alertmanager manifests will be stored here.
+Alertmanager routing and notification configuration will be documented here.
