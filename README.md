@@ -4,6 +4,14 @@ This repository contains the Kubernetes platform layer for the Cloud-Native DevO
 
 It demonstrates Amazon EKS, Kubernetes workloads, GitOps with ArgoCD, Traefik ingress routing, Prometheus monitoring, Grafana dashboards, Alertmanager, Loki, and Promtail.
 
+---
+
+## Architecture Diagram
+
+![Kubernetes Platform Architecture](docs/diagrams/Cloud-Native-DevOps-Platform%20-%20Kubernetes-Platform-Architecture.png)
+
+---
+
 ## Project Role
 
 This is repository 3 of the flagship DevOps platform project.
@@ -13,6 +21,8 @@ This is repository 3 of the flagship DevOps platform project.
 | cloud-native-devops-platform-app | Application source code, Dockerfiles, Docker Compose |
 | cloud-native-devops-platform-infra | Terraform, Ansible, AWS infrastructure automation |
 | cloud-native-devops-platform-kubernetes | Kubernetes, GitOps, ingress, monitoring, logging |
+
+---
 
 ## What This Repository Demonstrates
 
@@ -28,7 +38,9 @@ This is repository 3 of the flagship DevOps platform project.
 - Promtail log collection
 - Kubernetes validation and operational evidence
 
-## Architecture Overview
+---
+
+## Platform Architecture
 
 GitHub Repository
         |
@@ -49,6 +61,8 @@ Prometheus + Grafana + Alertmanager
 
 Logging:
 Loki + Promtail
+
+---
 
 ## Repository Structure
 
@@ -74,9 +88,11 @@ Loki + Promtail
   - middlewares/
   - tls/
 - docs/
-  - screenshots/
   - diagrams/
+  - screenshots/
   - validation documents
+
+---
 
 ## Deployment Workflow
 
@@ -90,6 +106,8 @@ Loki + Promtail
 8. Prometheus, Grafana, and Alertmanager are installed for monitoring.
 9. Loki and Promtail are installed for logging.
 
+---
+
 ## Kubernetes Deployment
 
 Apply application manifests manually:
@@ -101,6 +119,8 @@ Validate:
     kubectl get pods -n cloud-platform
     kubectl get svc -n cloud-platform
     kubectl get all -n cloud-platform
+
+---
 
 ## ArgoCD GitOps Deployment
 
@@ -118,6 +138,8 @@ Expected result:
 
     cloud-platform-app   Synced   Healthy
 
+---
+
 ## Traefik Routing
 
 Validate Traefik:
@@ -132,6 +154,8 @@ Test routes:
 
     curl -I -H "Host: app.example.com" http://$TRAEFIK_LB/
     curl -I -H "Host: app.example.com" http://$TRAEFIK_LB/docs
+
+---
 
 ## Monitoring Stack
 
@@ -155,6 +179,8 @@ Alertmanager validation:
 - Alertmanager UI access
 - Alerting service running
 
+---
+
 ## Logging Stack
 
 Validate logging resources:
@@ -169,88 +195,92 @@ Loki internal components:
 
     curl http://localhost:3100/services
 
+---
+
 ## Validation Evidence
 
 Runtime validation screenshots are available under:
 
     docs/screenshots/
 
-The repository includes the following operational evidence.
-
 ### Amazon EKS
 
 | Screenshot | Description |
-|------------|-------------|
-| eks-nodes.png | Amazon EKS worker nodes in Ready state |
-| full-cluster.png | Complete Kubernetes cluster runtime |
-| kube-system-resources.png | Kubernetes system components |
+|---|---|
+| [eks-nodes.png](docs/screenshots/eks-nodes.png) | Amazon EKS worker nodes in Ready state |
+| [full-cluster.png](docs/screenshots/full-cluster.png) | Complete Kubernetes cluster runtime |
+| [kube-system-resources.png](docs/screenshots/kube-system-resources.png) | Kubernetes system components |
 
 ### Kubernetes Application
 
 | Screenshot | Description |
-|------------|-------------|
-| cloud-platform-namespace.png | Application namespace created |
-| cloud-platform-resources.png | All application resources running |
-| kubernetes-pods-running.png | Frontend, backend and PostgreSQL pods |
-| kubernetes-services.png | Kubernetes Services |
-| postgres-pod-details.png | PostgreSQL pod description |
-| postgres-pod-events.png | PostgreSQL events |
+|---|---|
+| [cloud-platform-namespace.png](docs/screenshots/cloud-platform-namespace.png) | Application namespace created |
+| [cloud-platform-resources.png](docs/screenshots/cloud-platform-resources.png) | All application resources running |
+| [kubernetes-pods-running.png](docs/screenshots/kubernetes-pods-running.png) | Frontend, backend and PostgreSQL pods |
+| [kubernetes-services.png](docs/screenshots/kubernetes-services.png) | Kubernetes Services |
+| [postgres-pod-details.png](docs/screenshots/postgres-pod-details.png) | PostgreSQL pod description |
+| [postgres-pod-events.png](docs/screenshots/postgres-pod-events.png) | PostgreSQL events |
 
 ### Traefik
 
 | Screenshot | Description |
-|------------|-------------|
-| traefik-loadbalancer.png | Traefik AWS LoadBalancer |
-| traefik-resources.png | Traefik Kubernetes resources |
-| traefik-pods.png | Traefik pods |
-| traefik-ingressroute.png | Traefik IngressRoute |
-| traefik-middleware.png | Traefik Middleware |
-| traefik-frontend-route.png | Frontend routing validation |
-| traefik-backend-docs-route.png | Backend Swagger routing validation |
+|---|---|
+| [traefik-loadbalancer.png](docs/screenshots/traefik-loadbalancer.png) | Traefik AWS LoadBalancer |
+| [traefik-resources.png](docs/screenshots/traefik-resources.png) | Traefik Kubernetes resources |
+| [traefik-pods.png](docs/screenshots/traefik-pods.png) | Traefik pods |
+| [traefik-ingressroute.png](docs/screenshots/traefik-ingressroute.png) | Traefik IngressRoute |
+| [traefik-middleware.png](docs/screenshots/traefik-middleware.png) | Traefik Middleware |
+| [traefik-frontend-route.png](docs/screenshots/traefik-frontend-route.png) | Frontend routing validation |
+| [traefik-backend-docs-route.png](docs/screenshots/traefik-backend-docs-route.png) | Backend Swagger routing validation |
 
 ### ArgoCD GitOps
 
 | Screenshot | Description |
-|------------|-------------|
-| argocd-resources.png | ArgoCD resources |
-| argocd-services.png | ArgoCD services |
-| argocd-pods-running.png | ArgoCD pods |
-| argocd-application-synced.png | GitOps application synced |
-| argocd-application-details.png | Application details |
-| argocd-sync-events.png | Synchronization history |
+|---|---|
+| [argocd-resources.png](docs/screenshots/argocd-resources.png) | ArgoCD resources |
+| [argocd-services.png](docs/screenshots/argocd-services.png) | ArgoCD services |
+| [argocd-pods-running.png](docs/screenshots/argocd-pods-running.png) | ArgoCD pods |
+| [argocd-application-synced.png](docs/screenshots/argocd-application-synced.png) | GitOps application synced |
+| [argocd-application-details.png](docs/screenshots/argocd-application-details.png) | Application details |
+| [argocd-sync-events.png](docs/screenshots/argocd-sync-events.png) | Synchronization history |
 
 ### Monitoring
 
 | Screenshot | Description |
-|------------|-------------|
-| monitoring-resources.png | Monitoring namespace resources |
-| monitoring-services.png | Monitoring services |
-| monitoring-pods-running.png | Monitoring pods |
-| prometheus-targets.png | Prometheus scrape targets |
-| prometheus-up-query.png | PromQL query validation |
-| prometheus-runtime.png | Runtime metrics |
-| grafana-dashboard.png | Grafana Kubernetes dashboard |
-| alertmanager-ui.png | Alertmanager interface |
+|---|---|
+| [monitoring-resources.png](docs/screenshots/monitoring-resources.png) | Monitoring namespace resources |
+| [monitoring-services.png](docs/screenshots/monitoring-services.png) | Monitoring services |
+| [monitoring-pods-running.png](docs/screenshots/monitoring-pods-running.png) | Monitoring pods |
+| [prometheus-targets.png](docs/screenshots/prometheus-targets.png) | Prometheus target health |
+| [prometheus-up-query.png](docs/screenshots/prometheus-up-query.png) | PromQL query validation |
+| [prometheus-runtime.png](docs/screenshots/prometheus-runtime.png) | Prometheus runtime validation |
+| [grafana-dashboard.png](docs/screenshots/grafana-dashboard.png) | Grafana dashboard validation |
+| [alertmanager-ui.png](docs/screenshots/alertmanager-ui.png) | Alertmanager UI validation |
 
 ### Logging
 
 | Screenshot | Description |
-|------------|-------------|
-| logging-resources.png | Loki and Promtail resources |
-| loki-ready.png | Loki readiness endpoint |
-| loki-components-running.png | Loki internal services |
-| loki-promtail-running.png | Loki and Promtail running |
+|---|---|
+| [logging-resources.png](docs/screenshots/logging-resources.png) | Loki and Promtail resources |
+| [loki-promtail-running.png](docs/screenshots/loki-promtail-running.png) | Loki and Promtail running |
+| [loki-ready.png](docs/screenshots/loki-ready.png) | Loki readiness endpoint |
+| [loki-components-running.png](docs/screenshots/loki-components-running.png) | Loki internal services running |
+
+---
 
 ## Documentation
 
 Detailed validation notes are available in:
 
-- docs/kubernetes-validation.md
-- docs/gitops-validation.md
-- docs/argocd-validation.md
-- docs/traefik-validation.md
-- docs/monitoring-validation.md
-- docs/logging-validation.md
+- [Kubernetes Validation](docs/kubernetes-validation.md)
+- [GitOps Validation](docs/gitops-validation.md)
+- [ArgoCD Validation](docs/argocd-validation.md)
+- [Traefik Validation](docs/traefik-validation.md)
+- [Monitoring Validation](docs/monitoring-validation.md)
+- [Logging Validation](docs/logging-validation.md)
+
+---
 
 ## Current Status
 
@@ -267,10 +297,9 @@ Completed:
 - Promtail log collector
 - Runtime screenshots
 - Validation documentation
+- Architecture diagram
 
-Pending:
-
-- Final professional architecture diagram
+---
 
 ## Skills Demonstrated
 
@@ -284,3 +313,4 @@ Pending:
 - Logging with Loki and Promtail
 - Kubernetes troubleshooting
 - Platform validation and documentation
+
