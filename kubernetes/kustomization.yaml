@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - namespaces/base/namespace.yaml
   - database/postgres/secret.yaml
-  - database/postgres/pvc.yaml
   - database/postgres/deployment.yaml
   - database/postgres/service.yaml
   - apps/backend/secret.yaml
