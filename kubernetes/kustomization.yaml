@@ -14,5 +14,5 @@ resources:
   - apps/frontend/configmap.yaml
   - apps/frontend/deployment.yaml
   - apps/frontend/service.yaml
-  - ../traefik/middlewares/backend-strip-prefix.yaml
-  - ../traefik/ingressroutes/cloud-platform-ingressroute.yaml
+  - ingress/traefik/middlewares/backend-strip-prefix.yaml
+  - ingress/traefik/ingressroutes/cloud-platform-ingressroute.yaml
