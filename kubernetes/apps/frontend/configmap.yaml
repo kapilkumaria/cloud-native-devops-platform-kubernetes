@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: frontend-config
-  namespace: cloud-platform
-data:
-  VITE_API_URL: "http://backend:8000"

@@ -19,7 +19,6 @@ resources:
   - apps/backend/service.yaml
 
   # Frontend
-  - apps/frontend/configmap.yaml
   - apps/frontend/deployment.yaml
   - apps/frontend/service.yaml
 
