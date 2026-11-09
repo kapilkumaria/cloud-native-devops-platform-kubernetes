@@ -7,7 +7,6 @@ data:
   PROJECT_NAME: "Full Stack FastAPI Project"
   DOMAIN: "localhost"
   BACKEND_CORS_ORIGINS: "http://localhost:3000,http://frontend"
-  DATABASE_URL: "postgresql://app:changethis123@postgres:5432/app"
   POSTGRES_SERVER: "postgres"
   POSTGRES_PORT: "5432"
   POSTGRES_DB: "app"
