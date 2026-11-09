@@ -7,11 +7,9 @@ spec:
   entryPoints:
     - web
 
-  routes:
+  routes:    
     - match: Host(`app.example.com`) && PathPrefix(`/api`)
       kind: Rule
-      middlewares:
-        - name: backend-strip-prefix
       services:
         - name: backend
           port: 8000

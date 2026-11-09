@@ -23,6 +23,5 @@ resources:
   - apps/frontend/deployment.yaml
   - apps/frontend/service.yaml
 
-  # Traefik routing
-  - ingress/traefik/middlewares/backend-strip-prefix.yaml
+  # Traefik routing  
   - ingress/traefik/ingressroutes/cloud-platform-ingressroute.yaml
