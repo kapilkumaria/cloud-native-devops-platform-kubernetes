@@ -10,3 +10,9 @@ kubeconfig
 .DS_Store
 .vscode/
 .idea/
+
+# Kubernetes local Secret manifests
+kubernetes/**/secret.yaml
+kubernetes/**/secret.yml
+kubernetes/**/*-secret.yaml
+kubernetes/**/*-secret.yml
