@@ -1,29 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: postgres
   namespace: cloud-platform
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       app: postgres
+
+  strategy:
+    type: Recreate
+
   template:
     metadata:
       labels:
         app: postgres
+
     spec:
       containers:
         - name: postgres
           image: postgres:16
+
           ports:
             - containerPort: 5432
+
           envFrom:
             - secretRef:
                 name: postgres-secret
+
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
+
           readinessProbe:
             exec:
               command:
@@ -34,6 +46,8 @@ spec:
                 - app
             initialDelaySeconds: 10
             periodSeconds: 10
+
       volumes:
         - name: postgres-storage
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: postgres-pvc

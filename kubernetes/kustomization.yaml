@@ -2,14 +2,27 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  # Namespace
   - namespaces/base/namespace.yaml
+
+  # PostgreSQL persistent storage
+  - database/postgres/storageclass.yaml
+  - database/postgres/pvc.yaml
+
+  # PostgreSQL
   - database/postgres/deployment.yaml
   - database/postgres/service.yaml
+
+  # Backend
   - apps/backend/configmap.yaml
   - apps/backend/deployment.yaml
   - apps/backend/service.yaml
+
+  # Frontend
   - apps/frontend/configmap.yaml
   - apps/frontend/deployment.yaml
   - apps/frontend/service.yaml
+
+  # Traefik routing
   - ingress/traefik/middlewares/backend-strip-prefix.yaml
   - ingress/traefik/ingressroutes/cloud-platform-ingressroute.yaml
