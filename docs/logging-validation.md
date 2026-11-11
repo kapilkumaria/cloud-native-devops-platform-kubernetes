@@ -2,105 +2,75 @@
 
 ## Objective
 
-This document validates the centralized logging platform deployed on Amazon EKS.
+Record the earlier centralized logging deployment on Amazon EKS and provide repeatable checks for a future deployment of the Cloud-Native DevOps Platform.
 
-The logging stack consists of:
+> **Evidence status — November 10, 2026:** The historical screenshots and successful Loki/Promtail observations below belong to the earlier EKS deployment. The revised Project 1 configuration has not been redeployed or revalidated at runtime.
 
-* Loki
-* Promtail
+## Previously Deployed Components
 
----
+- Loki logging backend (historically a StatefulSet).
+- Promtail agent (historically a DaemonSet).
+- Loki Service (historically internal `ClusterIP`).
 
-# Logging Namespace
+The exact component layout can vary with Helm chart versions; inspect the deployed resources before assuming names or ports.
 
-Logging components are deployed into the dedicated namespace.
+## Namespace and Resource Checks
 
 ```bash
-kubectl get all -n logging
+kubectl get ns logging
 kubectl get pods -n logging
+kubectl get svc -n logging
+kubectl get statefulset,daemonset -n logging
+```
+
+## Loki Readiness
+
+Verify the Service name and ports:
+
+```bash
 kubectl get svc -n logging
 ```
 
-The namespace contains:
-
-* Loki StatefulSet
-* Promtail DaemonSet
-* Loki ClusterIP Service
-
----
-
-# Loki Validation
-
-Port-forward Loki.
+For the historical `loki` Service:
 
 ```bash
-kubectl port-forward svc/loki \
--n logging 3100:3100
+kubectl port-forward -n logging svc/loki 3100:3100
 ```
 
-Verify readiness.
+In a separate terminal:
 
 ```bash
-curl http://localhost:3100/ready
+curl -fsS http://localhost:3100/ready
+curl -fsS http://localhost:3100/services
 ```
 
-Expected output:
+The `/ready` endpoint should indicate readiness when Loki is operational. The `/services` endpoint is diagnostic; component names depend on Loki deployment mode and version, so do not require every possible component to appear in all installations.
 
-```text
-ready
-```
-
-Verify Loki internal services.
+## Promtail Agent Checks
 
 ```bash
-curl http://localhost:3100/services
+kubectl get daemonsets -n logging
+kubectl get pods -n logging -o wide
+kubectl logs -n logging daemonset/promtail --tail=100
 ```
 
-Expected running services include:
+The final command assumes the historical DaemonSet is named `promtail`; use `kubectl get daemonsets -n logging` first to confirm.
 
-* distributor
-* ingester
-* querier
-* query-frontend
-* compactor
-* store
-* query-scheduler
-* memberlist
-* ring
+Promtail was deployed as a DaemonSet to collect Kubernetes node/container logs. Verify desired versus ready pod counts and any node selector, affinity or toleration limitations rather than assuming one agent runs on every node.
 
----
+## End-to-End Log Validation
 
-# Promtail Validation
+A running Promtail DaemonSet and a ready Loki endpoint do not by themselves prove that application logs are being ingested. On a rebuilt cluster, use Grafana Explore or an authenticated Loki query API to confirm recent logs from a known application pod and record the query/observed timestamps.
 
-Verify Promtail deployment.
+## Historical Validation Screenshots
 
-```bash
-kubectl get daemonset -n logging
-```
+| Screenshot | Previously recorded evidence |
+| --- | --- |
+| [logging-resources.png](screenshots/logging-resources.png) | Logging namespace resources |
+| [loki-promtail-running.png](screenshots/loki-promtail-running.png) | Loki and Promtail resources running |
+| [loki-ready.png](screenshots/loki-ready.png) | Loki readiness result |
+| [loki-components-running.png](screenshots/loki-components-running.png) | Loki internal services |
 
-Verify Promtail pods.
+## Historical Result and Current Status
 
-```bash
-kubectl get pods -n logging
-```
-
-Promtail is deployed as a DaemonSet to ensure every Kubernetes worker node forwards container logs to Loki.
-
----
-
-# Validation Screenshots
-
-| Screenshot                  | Description                             |
-| --------------------------- | --------------------------------------- |
-| logging-resources.png       | Logging namespace resources             |
-| loki-promtail-running.png   | Loki StatefulSet and Promtail DaemonSet |
-| loki-ready.png              | Loki readiness endpoint                 |
-| loki-components-running.png | Loki internal services                  |
-
----
-
-# Result
-
-The centralized logging platform was successfully deployed on Amazon EKS.
-
-Loki is operational, Promtail is collecting logs from Kubernetes worker nodes, and the logging infrastructure is ready for integration with Grafana.
+The earlier deployment recorded Loki readiness and running Promtail resources. This documentation preserves those results while leaving verification of current log ingestion and revised EKS application behavior explicitly **pending**.

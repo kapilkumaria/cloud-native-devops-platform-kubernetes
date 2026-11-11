@@ -2,134 +2,85 @@
 
 ## Objective
 
-This document validates the monitoring platform deployed on Amazon EKS for the Cloud-Native DevOps Platform.
+Record the earlier Amazon EKS monitoring deployment and provide verification commands for future deployments of the Cloud-Native DevOps Platform.
 
-The monitoring stack consists of:
+> **Evidence status — November 10, 2026:** The successful monitoring results and screenshots below are from the previous EKS runtime. The updated Project 1 EKS application configuration is not currently running and has not been revalidated end to end.
 
-* Prometheus
-* Grafana
-* Alertmanager
-* kube-state-metrics
-* node-exporter
-* Prometheus Operator
+## Monitoring Components
 
----
+The previously validated monitoring stack included:
 
-# Monitoring Namespace
+- Prometheus
+- Grafana
+- Alertmanager
+- Prometheus Operator
+- kube-state-metrics
+- node-exporter
 
-The monitoring components are deployed into the dedicated namespace.
+The installation/Service names below reflect the earlier deployment; confirm actual Helm release and Service names on any rebuilt cluster.
+
+## Namespace and Resource Checks
 
 ```bash
-kubectl get all -n monitoring
+kubectl get ns monitoring
 kubectl get pods -n monitoring
+kubectl get svc -n monitoring
+kubectl get all -n monitoring
+```
+
+Expected when deployed: relevant monitoring components are present, scheduled and ready. `kubectl get all` does not include every Kubernetes resource type or Prometheus Operator CRD.
+
+## Prometheus
+
+First check the actual Service names:
+
+```bash
 kubectl get svc -n monitoring
 ```
 
-The monitoring namespace contains:
-
-* Prometheus
-* Grafana
-* Alertmanager
-* Prometheus Operator
-* kube-state-metrics
-* node-exporter
-
----
-
-# Prometheus Validation
-
-Port-forward Prometheus.
+For the historical `kube-prometheus-stack` Service naming convention:
 
 ```bash
-kubectl port-forward svc/kube-prometheus-stack-prometheus \
--n monitoring 9090:9090
+kubectl port-forward -n monitoring svc/kube-prometheus-stack-prometheus 9090:9090
 ```
 
-Open:
+Open `http://localhost:9090`, check **Status > Targets**, and query:
 
-```
-http://localhost:9090
-```
-
-Validation performed:
-
-* Prometheus UI is accessible.
-* Kubernetes targets are discovered.
-* Metrics are successfully scraped.
-* PromQL queries execute successfully.
-
-Example query:
-
-```text
+```promql
 up
 ```
 
----
+Confirm intended scrape targets are discovered and healthy. An `up` result of `1` indicates a successful scrape of that target at query time; it does not by itself validate all application functionality.
 
-# Grafana Validation
-
-Port-forward Grafana.
+## Grafana
 
 ```bash
-kubectl port-forward svc/kube-prometheus-stack-grafana \
--n monitoring 3001:80
+kubectl port-forward -n monitoring svc/kube-prometheus-stack-grafana 3001:80
 ```
 
-Open:
+Open `http://localhost:3001`. Validate the configured Prometheus data source, dashboard panels and time series. Use securely managed Grafana credentials; do not publish passwords or session tokens in this repository.
 
-```
-http://localhost:3001
-```
-
-Validation performed:
-
-* Grafana UI loads successfully.
-* Dashboards are available.
-* Kubernetes metrics are visualized.
-* Prometheus datasource is functioning correctly.
-
----
-
-# Alertmanager Validation
-
-Port-forward Alertmanager.
+## Alertmanager
 
 ```bash
-kubectl port-forward svc/kube-prometheus-stack-alertmanager \
--n monitoring 9093:9093
+kubectl port-forward -n monitoring svc/kube-prometheus-stack-alertmanager 9093:9093
 ```
 
-Open:
+Open `http://localhost:9093`. Check Alertmanager health and active configuration. UI availability alone does **not** establish that alert notifications are delivered: verify alert rules, routing, receiver configuration and notification delivery separately if claimed.
 
-```
-http://localhost:9093
-```
+## Historical Validation Screenshots
 
-Validation performed:
+| Screenshot | Previously recorded evidence |
+| --- | --- |
+| [monitoring-resources.png](screenshots/monitoring-resources.png) | Monitoring namespace resources |
+| [monitoring-services.png](screenshots/monitoring-services.png) | Monitoring Services |
+| [monitoring-pods-running.png](screenshots/monitoring-pods-running.png) | Running monitoring pods |
+| [prometheus-targets.png](screenshots/prometheus-targets.png) | Prometheus target state |
+| [prometheus-up-query.png](screenshots/prometheus-up-query.png) | `up` query |
+| [prometheus-runtime.png](screenshots/prometheus-runtime.png) | Prometheus runtime |
+| [grafana-dashboard.png](screenshots/grafana-dashboard.png) | Grafana dashboard |
+| [alertmanager-ui.png](screenshots/alertmanager-ui.png) | Alertmanager UI |
 
-* Alertmanager UI is accessible.
-* Alertmanager service is healthy.
-* Alert routing configuration is loaded.
+## Historical Result and Current Status
 
----
-
-# Validation Screenshots
-
-| Screenshot                  | Description                    |
-| --------------------------- | ------------------------------ |
-| monitoring-resources.png    | Monitoring namespace resources |
-| monitoring-services.png     | Monitoring services            |
-| monitoring-pods-running.png | Monitoring pods                |
-| prometheus-targets.png      | Prometheus target health       |
-| prometheus-up-query.png     | PromQL query validation        |
-| prometheus-runtime.png      | Runtime metrics                |
-| grafana-dashboard.png       | Grafana dashboard              |
-| alertmanager-ui.png         | Alertmanager UI                |
-
----
-
-# Result
-
-The monitoring platform was successfully deployed on Amazon EKS.
-
-Prometheus is collecting cluster metrics, Grafana is visualizing metrics through dashboards, and Alertmanager is operational for alert management.
+The earlier EKS deployment demonstrated accessible Prometheus, Grafana dashboards and Alertmanager UI, supported by the linked screenshots. This is historical evidence, **not** a claim that the November revised manifests or alert delivery have been verified in a running cluster.
